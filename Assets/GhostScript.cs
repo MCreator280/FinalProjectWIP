@@ -69,6 +69,10 @@ public class GhostScript : MonoBehaviour
         OnGround = true;
     }
 
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        OnGround = false;
+    }
 
 
 
