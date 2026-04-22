@@ -45,19 +45,31 @@ public class GhostScript : MonoBehaviour
                 vel.x = 0;
             }
 
+
+            //Jump
+            if (Input.GetKeyDown(KeyCode.Z) && CanJump())
+            {
+                vel.y = JumpPower;
+            }
+
+
             //Updates LinearVelocity to match what Vel is equal at the moment
             RB.linearVelocity = vel;
-
-            
-
-
         }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            PlayerControl = false;
-        }
-
 
     }
+
+    public bool CanJump()
+    {
+        return OnGround;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        OnGround = true;
+    }
+
+
+
+
 }

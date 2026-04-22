@@ -700,7 +700,7 @@ MonoBehaviour:
   RB: {fileID: 1806563563}
   Speed: 5
   JumpPower: 10
-  Gravity: 13
+  Gravity: 3
   PlayerControl: 1
   OnGround: 0
 --- !u!50 &1806563563
