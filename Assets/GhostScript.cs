@@ -15,6 +15,7 @@ public class GhostScript : MonoBehaviour
     public bool PlayerControl = true;
     public bool OnGround = false;
     public float Dash = 0;
+    public bool FacingLeft = false;
   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,55 +27,66 @@ public class GhostScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerControl == true)
-        {   
+        if (PlayerControl != true) return;
+        
+        Vector2 vel = RB.linearVelocity;
 
-            if(Dash > 0)
+        if(Dash > 0)
+        {
+            Dash -= Time.deltaTime;
+            if (FacingLeft)
             {
-                Dash -= Time.deltaTime;
-            }
-
-
-            //Assigns Vel to be LinearVelocity
-            Vector2 vel = RB.linearVelocity;
-            
-            //Movement
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                vel.x = Speed;
-                Debug.Log("Right");
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                vel.x = -Speed;
-                Debug.Log("Left");
+                vel = new Vector2(-15,0);
             }
             else
             {
-                vel.x = 0;
+                vel = new Vector2(15,0);
             }
-
-
-            //Jump
-            if (Input.GetKeyDown(KeyCode.Z) && CanJump())
-            {
-                vel.y = JumpPower;
-            }
-
-            //Dash
-            // if (Input.GetKeyDown(KeyCode.X))
-            // {
-            //     Dash = 0.75f;
-            //     Vector2 vel = new Vector2(5,5);
-            //     RB.AddForce(vel,ForceMode2D.Impulse);
-            // }
-            
-            
-        
-
-            //Updates LinearVelocity to match what Vel is equal at the moment
             RB.linearVelocity = vel;
+            return;
         }
+
+        //Assigns Vel to be LinearVelocity
+        
+        
+        //Movement
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            vel.x = Speed;
+            Debug.Log("Right");
+            FacingLeft = false;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            vel.x = -Speed;
+            Debug.Log("Left");
+            FacingLeft = true;
+        }
+        else
+        {
+            vel.x = 0;
+        }
+
+
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Z) && CanJump())
+        {
+            vel.y = JumpPower;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Dash = 0.2f;
+            // vel = new Vector2(5,0);
+            // RB.AddForce(vel,ForceMode2D.Impulse);
+        }
+        
+        // DashSpeed();
+    
+
+        //Updates LinearVelocity to match what Vel is equal at the moment
+        RB.linearVelocity = vel;
+        
 
     }
 
@@ -82,6 +94,7 @@ public class GhostScript : MonoBehaviour
     {
         return OnGround;
     }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
