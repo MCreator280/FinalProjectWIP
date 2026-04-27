@@ -14,6 +14,8 @@ public class GhostScript : MonoBehaviour
     //Ghost States
     public bool PlayerControl = true;
     public bool OnGround = false;
+    public float Dash = 0;
+  
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +28,13 @@ public class GhostScript : MonoBehaviour
     {
         if (PlayerControl == true)
         {   
+
+            if(Dash > 0)
+            {
+                Dash -= Time.deltaTime;
+            }
+
+
             //Assigns Vel to be LinearVelocity
             Vector2 vel = RB.linearVelocity;
             
@@ -52,6 +61,16 @@ public class GhostScript : MonoBehaviour
                 vel.y = JumpPower;
             }
 
+            //Dash
+            // if (Input.GetKeyDown(KeyCode.X))
+            // {
+            //     Dash = 0.75f;
+            //     Vector2 vel = new Vector2(5,5);
+            //     RB.AddForce(vel,ForceMode2D.Impulse);
+            // }
+            
+            
+        
 
             //Updates LinearVelocity to match what Vel is equal at the moment
             RB.linearVelocity = vel;
