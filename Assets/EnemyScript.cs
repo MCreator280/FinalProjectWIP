@@ -44,11 +44,22 @@ public class EnemyScript : MonoBehaviour
                 vel.x = 0;
             }
 
+             //Jump
+            if (Input.GetKeyDown(KeyCode.Z) && CanJump())
+            {
+                vel.y = JumpPower;
+            }
+
             //Updates LinearVelocity to match what Vel is equal at the moment
             RB.linearVelocity = vel;
         }
 
 
+    }
+
+    public bool CanJump()
+    {
+        return OnGround;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -59,11 +70,14 @@ public class EnemyScript : MonoBehaviour
             SR.color = Color.blue;
             Destroy(other.gameObject);
         }
+        
+        OnGround = true;
 
+    }
 
-
-
-
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        OnGround = false;
     }
 
 

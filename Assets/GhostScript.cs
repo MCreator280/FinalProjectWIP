@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class GhostScript : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class GhostScript : MonoBehaviour
     public float Gravity = 13;
 
     //Ghost States
+    public List<GameObject> Touching;
     public bool PlayerControl = true;
     public bool OnGround = false;
     public float Dash = 0;
@@ -92,18 +95,20 @@ public class GhostScript : MonoBehaviour
 
     public bool CanJump()
     {
-        return OnGround;
+        return Touching.Count > 0;
     }
 
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        OnGround = true;
+        if(!Touching.Contains(other.gameObject))
+            Touching.Add(other.gameObject);
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         OnGround = false;
+        Touching.Remove(other.gameObject);
     }
 
 
