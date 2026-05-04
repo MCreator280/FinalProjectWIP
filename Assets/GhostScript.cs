@@ -80,11 +80,9 @@ public class GhostScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             Dash = 0.2f;
-            // vel = new Vector2(5,0);
-            // RB.AddForce(vel,ForceMode2D.Impulse);
         }
         
-        // DashSpeed();
+    
     
 
         //Updates LinearVelocity to match what Vel is equal at the moment
