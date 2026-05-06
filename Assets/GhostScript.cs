@@ -39,11 +39,11 @@ public class GhostScript : MonoBehaviour
             Dash -= Time.deltaTime;
             if (FacingLeft)
             {
-                vel = new Vector2(-15,0);
+                vel = new Vector2(-25,0);
             }
             else
             {
-                vel = new Vector2(15,0);
+                vel = new Vector2(25,0);
             }
             RB.linearVelocity = vel;
             return;
