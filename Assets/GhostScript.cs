@@ -12,6 +12,8 @@ public class GhostScript : MonoBehaviour
     public float Speed = 5;
     public float JumpPower = 10;
     public float Gravity = 13;
+    public float CooldownDash = 3;
+    public float CooldownTimerD = 0;
 
     //Ghost States
     public List<GameObject> Touching;
@@ -19,6 +21,7 @@ public class GhostScript : MonoBehaviour
     public bool OnGround = false;
     public float Dash = 0;
     public bool FacingLeft = false;
+    public bool DashState = false;
   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,20 +37,45 @@ public class GhostScript : MonoBehaviour
         
         Vector2 vel = RB.linearVelocity;
 
-        if(Dash > 0)
+        // if (Input.GetKeyDown(KeyCode.C) && CooldownTimerD <=0 )
+        // {
+        //     CooldownTimerD = CooldownDash;
+        // }
+
+        if (CooldownTimerD >= 0)
         {
-            Dash -= Time.deltaTime;
-            if (FacingLeft)
-            {
-                vel = new Vector2(-25,0);
-            }
-            else
-            {
-                vel = new Vector2(25,0);
-            }
-            RB.linearVelocity = vel;
-            return;
+            CooldownTimerD -= Time.deltaTime;
+                    if(Dash > 0)
+                {
+                    Dash -= Time.deltaTime;
+                    if (FacingLeft)
+                    {
+                        vel = new Vector2(-25,0);
+                    }
+                    else
+                    {
+                        vel = new Vector2(25,0);
+                    }
+                    RB.linearVelocity = vel;
+                    return;
+                }
+            Debug.Log("I Can't Dash");
         }
+
+        // if(Dash > 0)
+        // {
+        //     Dash -= Time.deltaTime;
+        //     if (FacingLeft)
+        //     {
+        //         vel = new Vector2(-25,0);
+        //     }
+        //     else
+        //     {
+        //         vel = new Vector2(25,0);
+        //     }
+        //     RB.linearVelocity = vel;
+        //     return;
+        // }
 
         //Assigns Vel to be LinearVelocity
         
@@ -77,12 +105,13 @@ public class GhostScript : MonoBehaviour
             vel.y = JumpPower;
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && CooldownTimerD <= 0)
         {
             Dash = 0.2f;
+            CooldownTimerD = CooldownDash;
         }
         
-    
+        
     
 
         //Updates LinearVelocity to match what Vel is equal at the moment
