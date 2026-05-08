@@ -7,6 +7,7 @@ public class GhostScript : MonoBehaviour
 
     public SpriteRenderer SR;
     public Rigidbody2D RB;
+    
 
     //Ghost Stats
     public float Speed = 5;
@@ -22,6 +23,10 @@ public class GhostScript : MonoBehaviour
     public float Dash = 0;
     public bool FacingLeft = false;
     public bool DashState = false;
+
+
+    //Ghost Collects
+    public float SmallEnergy = 0;
   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -117,6 +122,9 @@ public class GhostScript : MonoBehaviour
         //Updates LinearVelocity to match what Vel is equal at the moment
         RB.linearVelocity = vel;
         
+
+        
+
 
     }
 
