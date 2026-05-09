@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class GhostScript : MonoBehaviour
@@ -7,6 +8,7 @@ public class GhostScript : MonoBehaviour
 
     public SpriteRenderer SR;
     public Rigidbody2D RB;
+    public TextMeshPro SEnergy;
     
 
     //Ghost Stats
@@ -123,7 +125,7 @@ public class GhostScript : MonoBehaviour
         RB.linearVelocity = vel;
         
 
-        
+        SEnergy.text= "Small Energy "+ SmallEnergy;
 
 
     }

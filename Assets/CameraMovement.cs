@@ -16,11 +16,11 @@ public class CameraMovement : MonoBehaviour
 
         if (Ghost.FacingLeft == false)
         {
-            transform.position = Ghost.transform.position + new Vector3 (2,0,-10);
+            transform.position = Ghost.transform.position + new Vector3 (2,2,-10);
         }
         else 
         {
-            transform.position = Ghost.transform.position + new Vector3 (-2,0,-10);
+            transform.position = Ghost.transform.position + new Vector3 (-2,2,-10);
         }
     }
 }
