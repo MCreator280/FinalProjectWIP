@@ -12,15 +12,19 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Ghost.transform.position + new Vector3 (2,0,-10);
+        // transform.position = Ghost.transform.position + new Vector3 (0,2,-10);
 
-        if (Ghost.FacingLeft == false)
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position = Ghost.transform.position + new Vector3 (2,2,-10);
+            transform.position = Ghost.transform.position + new Vector3 (-2,1,-10);
         }
-        else 
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position = Ghost.transform.position + new Vector3 (-2,2,-10);
+            transform.position = Ghost.transform.position + new Vector3 (2,1,-10);
+        }
+        else
+        {
+            transform.position = Ghost.transform.position + new Vector3 (0,1,-10);
         }
     }
 }
