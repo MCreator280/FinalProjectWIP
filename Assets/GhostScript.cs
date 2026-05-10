@@ -29,12 +29,17 @@ public class GhostScript : MonoBehaviour
 
     //Ghost Collects
     public float SmallEnergy = 0;
+    //public GameObject GhostWall;
+
   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         RB.gravityScale = Gravity;
+        //GhostWall = GetComponent<Collider2D>();
+        // GWState.isTrigger = true;
+
     }
 
     // Update is called once per frame
@@ -130,10 +135,19 @@ public class GhostScript : MonoBehaviour
         if(!Touching.Contains(other.gameObject))
             Touching.Add(other.gameObject);
 
-        if(other.gameObject.tag == "GhostWall" && DashState)
-        {
-            Destroy(other.gameObject);
-        }
+        // if(other.gameObject.tag == "GhostWall" && DashState)
+        // {
+        //     Destroy(other.gameObject);
+        // }
+
+        // GhostWallScript GWS = other.gameObject.GetComponent<GhostWallScript>();
+
+        //     if(GWS != null)
+        // {
+        //     GWS.isTrigger = true;
+        // }
+
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
