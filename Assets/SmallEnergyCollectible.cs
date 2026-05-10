@@ -14,7 +14,7 @@ public class SmallEnergyCollectible : MonoBehaviour
         
     }
 
-     private void OnCollisionEnter2D(Collision2D other)
+     private void OnTriggerEnter2D(Collider2D other)
     {
         GhostScript GS = other.gameObject.GetComponent<GhostScript>();
 

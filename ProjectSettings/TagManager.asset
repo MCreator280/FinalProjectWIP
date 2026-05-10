@@ -8,6 +8,7 @@ TagManager:
   - Enemy1
   - Platforms
   - BreakableWall
+  - GhostWall
   layers:
   - Default
   - TransparentFX

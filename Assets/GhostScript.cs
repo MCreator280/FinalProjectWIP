@@ -63,29 +63,18 @@ public class GhostScript : MonoBehaviour
                     {
                         vel = new Vector2(25,0);
                     }
+                    DashState = true;
                     RB.linearVelocity = vel;
                     return;
                 }
+            else
+            {
+                DashState = false;
+            }
             Debug.Log("I Can't Dash");
         }
 
-        // if(Dash > 0)
-        // {
-        //     Dash -= Time.deltaTime;
-        //     if (FacingLeft)
-        //     {
-        //         vel = new Vector2(-25,0);
-        //     }
-        //     else
-        //     {
-        //         vel = new Vector2(25,0);
-        //     }
-        //     RB.linearVelocity = vel;
-        //     return;
-        // }
-
-        //Assigns Vel to be LinearVelocity
-        
+      
         
         //Movement
         if (Input.GetKey(KeyCode.RightArrow))
@@ -140,6 +129,11 @@ public class GhostScript : MonoBehaviour
     {
         if(!Touching.Contains(other.gameObject))
             Touching.Add(other.gameObject);
+
+        if(other.gameObject.tag == "GhostWall" && DashState)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D other)
