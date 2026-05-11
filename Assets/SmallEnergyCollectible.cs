@@ -21,7 +21,7 @@ public class SmallEnergyCollectible : MonoBehaviour
         if(GS != null)
         {
             Destroy(gameObject);
-            GS.SmallEnergy++;
+            GM.SmallE++;
         }
 
         EnemyScript ES = other.gameObject.GetComponent<EnemyScript>();
@@ -29,7 +29,7 @@ public class SmallEnergyCollectible : MonoBehaviour
         if(ES != null)
         {
             Destroy(gameObject);
-            GS.SmallEnergy++;
+            GM.SmallE++;
         }
     }
 }

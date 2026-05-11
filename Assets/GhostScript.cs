@@ -28,7 +28,7 @@ public class GhostScript : MonoBehaviour
 
 
     //Ghost Collects
-    public float SmallEnergy = 0;
+    // public float SmallEnergy = 0;
     //public GameObject GhostWall;
 
   
@@ -124,7 +124,7 @@ public class GhostScript : MonoBehaviour
         RB.linearVelocity = vel;
         
 
-        SEnergy.text= "Small Energy "+ SmallEnergy;
+        SEnergy.text= "Small Energy "+ GM.SmallE;
 
 
     }
