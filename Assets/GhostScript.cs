@@ -57,6 +57,7 @@ public class GhostScript : MonoBehaviour
         if (CooldownTimerD >= 0)
         {
             CooldownTimerD -= Time.deltaTime;
+            SR.color = Color.grey;
                     if(Dash > 0)
                 {
                     Dash -= Time.deltaTime;
@@ -77,6 +78,10 @@ public class GhostScript : MonoBehaviour
                 DashState = false;
             }
             Debug.Log("I Can't Dash");
+        }
+        else
+        {
+            SR.color = Color.white;
         }
 
       
@@ -135,17 +140,6 @@ public class GhostScript : MonoBehaviour
         if(!Touching.Contains(other.gameObject))
             Touching.Add(other.gameObject);
 
-        // if(other.gameObject.tag == "GhostWall" && DashState)
-        // {
-        //     Destroy(other.gameObject);
-        // }
-
-        // GhostWallScript GWS = other.gameObject.GetComponent<GhostWallScript>();
-
-        //     if(GWS != null)
-        // {
-        //     GWS.isTrigger = true;
-        // }
 
 
     }
@@ -156,6 +150,12 @@ public class GhostScript : MonoBehaviour
         Touching.Remove(other.gameObject);
     }
 
+     private void OnTriggerExit2D(Collider2D other)
+    {
+        OnGround = false;
+        Touching.Remove(other.gameObject);
+    }
+    
 
 
 }

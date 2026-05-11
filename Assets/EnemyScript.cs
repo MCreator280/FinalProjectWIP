@@ -79,6 +79,7 @@ public class EnemyScript : MonoBehaviour
                 Ghost.gameObject.SetActive(true);
                 Ghost.transform.parent = null;
                 Ghost = null;
+                SR.color = Color.red;
     
             }
 
