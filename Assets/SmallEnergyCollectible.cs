@@ -23,5 +23,13 @@ public class SmallEnergyCollectible : MonoBehaviour
             Destroy(gameObject);
             GS.SmallEnergy++;
         }
+
+        EnemyScript ES = other.gameObject.GetComponent<EnemyScript>();
+
+        if(ES != null)
+        {
+            Destroy(gameObject);
+            GS.SmallEnergy++;
+        }
     }
 }
